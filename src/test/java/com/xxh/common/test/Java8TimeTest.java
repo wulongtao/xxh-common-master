@@ -79,8 +79,9 @@ public class Java8TimeTest {
         System.out.println(format5);
 
         //按照指定方式格式化
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd E HH:mm:ss");
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String format6 = pattern.format(LocalDateTime.now());
+
         System.out.println(format6);
     }
 }
