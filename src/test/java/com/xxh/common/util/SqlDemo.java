@@ -3,6 +3,7 @@ package com.xxh.common.util;
 import org.junit.Test;
 
 import java.io.*;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,65 @@ import java.util.UUID;
  * Created by wulongtao on 2017/7/28.
  */
 public class SqlDemo {
+
+    @Test
+    public void testDocShbGjj() throws IOException {
+        List<DocShbGjjPolicy> lstDoc = ExcelUtils.readExcelFile(DocShbGjjPolicy.class, "E:\\java\\xxh-common-master-master\\src\\test\\java\\com\\xxh\\common\\util\\import.xlsx");
+
+
+        StringBuffer sb = new StringBuffer();
+        for (DocShbGjjPolicy doc : lstDoc) {
+
+            String updateTime = new Date(System.currentTimeMillis()).toString();
+            String sql = "INSERT INTO `doc_shb_gjj_policy` VALUES (" +
+                    "'"+doc.getData_ID()+"'," +
+                    " '"+doc.getSupplier()+"', " +
+                    "'"+doc.getProvince()+"', " +
+                    "'"+doc.getCity()+"'," +
+                    " '"+doc.getSick()+"', " +
+                    "'"+doc.getYL_BNFT()+"', " +
+                    "'"+doc.getSY_Process()+"', " +
+                    "'"+doc.getSY_BNFT()+"', " +
+                    "'"+doc.getYB_Process()+"', " +
+                    "'"+doc.getYB_BNFT()+"', " +
+                    "'"+doc.getGS_Process()+"', " +
+                    "'"+doc.getGS_BNFT()+"', " +
+                    "'"+doc.getGS_Note()+"', " +
+                    "'"+doc.getGS_BigContract()+"', " +
+                    "'"+doc.getGS_Contract()+"', " +
+                    "'"+doc.getSHYU_Process()+"', " +
+                    "'"+doc.getSHYU_Reimburse()+"', " +
+                    "'"+doc.getSHYU_BNFT()+"', " +
+                    "'"+doc.getSHYU_Record()+"', " +
+                    "'"+doc.getSHB_CERT()+"', " +
+                    "'"+doc.getSHB_SameCityYorN()+"', " +
+                    "'"+doc.getSHB_TransCityEff()+"', " +
+                    "'"+doc.getSHB_SameCityProcess()+"', " +
+                    "'"+doc.getSHB_TransProvinceYorN()+"', " +
+                    "'"+doc.getSHB_TransProvinceEff()+"', " +
+                    "'"+doc.getSHB_TransProvinceProcess()+"', " +
+                    "'"+doc.getGJJ_TransPolicy()+"', " +
+                    "'"+doc.getGJJ_TransProcess()+"', " +
+                    "'"+doc.getGJJ_ExtractionPolicy()+"', " +
+                    "'"+doc.getGJJ_ExtractionProcess()+"', " +
+                    "'"+doc.getNote()+"', " +
+                    "'"+updateTime+"');";
+
+
+
+            sb.append(sql);
+            sb.append("\n");
+            sb.append("\n");
+        }
+
+
+        FileWriter fw = null;
+        File f=new File("E:\\java\\xxh-common-master-master\\src\\test\\java\\com\\xxh\\common\\util\\doc_shb_gjj_policy.sql");
+        fw = new FileWriter(f, true);
+        PrintWriter pw = new PrintWriter(fw);
+        pw.println(sb);
+        pw.flush();
+    }
 
     @Test
     public void test() throws Exception {
